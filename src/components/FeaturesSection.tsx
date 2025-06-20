@@ -6,7 +6,7 @@ export const FeaturesSection = () => {
   const features = [
     {
       icon: BookOpen,
-      title: "Exercícios Interativos",
+      title: "Modulo estudar",
       description: "Pratique gramática, interpretação de texto e redação com exercícios personalizados para seu nível.",
       color: "blue"
     },
@@ -15,18 +15,6 @@ export const FeaturesSection = () => {
       title: "Sistema de Ranking",
       description: "Compare seu progresso com outros estudantes e conquiste medalhas por suas conquistas.",
       color: "green"
-    },
-    {
-      icon: Target,
-      title: "Metas Personalizadas",
-      description: "Defina objetivos de estudo e acompanhe seu progresso com relatórios detalhados.",
-      color: "orange"
-    },
-    {
-      icon: Users,
-      title: "Comunidade Ativa",
-      description: "Tire dúvidas, compartilhe conhecimento e faça parte de uma comunidade de aprendizado.",
-      color: "purple"
     }
   ];
 
