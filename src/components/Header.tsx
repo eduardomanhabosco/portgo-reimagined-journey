@@ -1,7 +1,8 @@
-
+// src/components/Header.tsx
 import { Button } from "@/components/ui/button";
 import { GraduationCap, Menu, User } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom"; // Importe o Link
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,12 +42,16 @@ export const Header = () => {
 
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center space-x-3">
-            <Button variant="ghost" className="text-blue-600 hover:text-blue-700 hover:bg-blue-50">
-              <User className="h-4 w-4 mr-2" />
-              Entrar
+            <Button asChild variant="ghost" className="text-blue-600 hover:text-blue-700 hover:bg-blue-50">
+              <Link to="/login"> {/* Botão "Entrar" agora leva para /login */}
+                <User className="h-4 w-4 mr-2" />
+                Entrar
+              </Link>
             </Button>
-            <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white">
-              Começar Agora
+            <Button asChild className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white">
+              <Link to="/login"> {/* Botão "Começar Agora" agora leva para /login */}
+                Começar Agora
+              </Link>
             </Button>
           </div>
 
@@ -78,12 +83,16 @@ export const Header = () => {
                 Sobre
               </a>
               <div className="flex flex-col space-y-2 pt-4 border-t border-blue-100">
-                <Button variant="ghost" className="text-blue-600 justify-start">
-                  <User className="h-4 w-4 mr-2" />
-                  Entrar
+                <Button asChild variant="ghost" className="text-blue-600 justify-start">
+                  <Link to="/login"> {/* Botão "Entrar" no menu mobile */}
+                    <User className="h-4 w-4 mr-2" />
+                    Entrar
+                  </Link>
                 </Button>
-                <Button className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-                  Começar Agora
+                <Button asChild className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                  <Link to="/login"> {/* Botão "Começar Agora" no menu mobile */}
+                    Começar Agora
+                  </Link>
                 </Button>
               </div>
             </nav>
