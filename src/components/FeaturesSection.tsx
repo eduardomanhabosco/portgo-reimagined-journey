@@ -1,10 +1,12 @@
+// src/components/FeaturesSection.tsx
 
 import { BookOpen, Target, Trophy, Users } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const FeaturesSection = () => {
   const features = [
-    {
+    
+      {
       icon: BookOpen,
       title: "Modulo estudar",
       description: "Pratique gramática, interpretação de texto e redação com exercícios personalizados para seu nível.",
@@ -21,9 +23,7 @@ export const FeaturesSection = () => {
   const getColorClasses = (color: string) => {
     const colors = {
       blue: "bg-blue-100 text-blue-600",
-      green: "bg-green-100 text-green-600",
-      orange: "bg-orange-100 text-orange-600",
-      purple: "bg-purple-100 text-purple-600"
+      green: "bg-green-100 text-green-600"
     };
     return colors[color as keyof typeof colors];
   };
@@ -34,20 +34,20 @@ export const FeaturesSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">
             Por que escolher o{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-hero-heading bg-clip-text text-transparent"> {/* Alterado aqui */}
               PortGO?
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Nossa plataforma combina metodologia educacional comprovada com tecnologia moderna 
+            Nossa plataforma combina metodologia educacional comprovada com tecnologia moderna
             para criar a melhor experiência de aprendizado de português.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {features.map((feature, index) => (
-            <Card 
-              key={index} 
+            <Card
+              key={index}
               className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-gray-100"
             >
               <CardHeader className="text-center pb-4">

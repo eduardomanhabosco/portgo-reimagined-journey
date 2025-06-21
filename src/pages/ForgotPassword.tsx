@@ -1,7 +1,7 @@
-// src/pages/Login.tsx
+// src/pages/ForgotPassword.tsx
 import { useForm } from "react-hook-form";
-// import { zodResolver } from "@hookform/resolvers/zod"; // Comentei o zodResolver
-// import * as z from "zod"; // Comentei o zod
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -14,31 +14,23 @@ import {
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
-// Removi o formSchema para permitir qualquer dado para demonstração
-/*
 const formSchema = z.object({
   email: z.string().email({ message: "Por favor, insira um endereço de e-mail válido." }),
-  password: z.string().min(6, { message: "A senha deve ter pelo menos 6 caracteres." }),
 });
-*/
 
-const Login = () => {
-  const navigate = useNavigate();
-
-  const form = useForm({
-    // resolver: zodResolver(formSchema), // Comentei o resolver
+const ForgotPassword = () => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
-      password: "",
     },
   });
 
-  const onSubmit = (values: any) => {
-    console.log("Dados de login (apenas para demonstração):", values);
-    alert("Login 'bem-sucedido' com qualquer dado! (Apenas para demonstração)");
-    navigate("/");
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log("Solicitação de redefinição de senha para:", values.email);
+    alert("Seu pedido de redefinição de senha foi enviado para o e-mail informado. Por favor, verifique sua caixa de entrada. (Apenas demonstrativo)");
+    form.reset();
   };
 
   return (
@@ -53,9 +45,9 @@ const Login = () => {
               className="h-24 w-auto" // Tamanho do logo
             />
           </div>
-          <CardTitle className="text-3xl font-bold">Bem-vindo(a) de volta!</CardTitle>
+          <CardTitle className="text-3xl font-bold">Esqueceu a Senha?</CardTitle>
           <CardDescription className="text-gray-600">
-            Entre na sua conta para continuar sua jornada de aprendizado.
+            Insira seu e-mail abaixo e enviaremos um link para redefinir sua senha.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -74,33 +66,15 @@ const Login = () => {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Senha</FormLabel>
-                    <FormControl>
-                      <Input type="password" placeholder="********" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="text-right text-sm">
-                <Link to="/forgot-password" className="text-blue-600 hover:underline">
-                  Esqueceu a senha?
-                </Link>
-              </div>
               <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-2">
-                Entrar
+                Redefinir Senha
               </Button>
             </form>
           </Form>
           <div className="mt-6 text-center text-sm">
-            Não tem uma conta?{" "}
-            <Link to="/signup" className="text-blue-600 hover:underline">
-              Cadastre-se
+            Lembrou da senha?{" "}
+            <Link to="/login" className="text-blue-600 hover:underline">
+              Voltar para o login
             </Link>
           </div>
         </CardContent>
@@ -109,4 +83,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;

@@ -1,8 +1,8 @@
 // src/components/Header.tsx
 import { Button } from "@/components/ui/button";
-import { GraduationCap, Menu, User } from "lucide-react";
+import { Menu, User } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom"; // Importe o Link
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,15 +13,13 @@ export const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-3 group cursor-pointer">
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-2 rounded-xl group-hover:scale-105 transition-transform">
-              <GraduationCap className="h-8 w-8 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent">
-                PortGO
-              </h1>
-              <p className="text-xs text-blue-600 font-medium">Português Online</p>
-            </div>
+            <Link to="/">
+              <img
+                src="/PortGO_logo branco.png" // Caminho para o logo na pasta public
+                alt="PortGO Logo"
+                className="h-24 w-auto group-hover:scale-150 transition-transform" // Aumentado para h-20 (80px)
+              />
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -43,13 +41,13 @@ export const Header = () => {
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center space-x-3">
             <Button asChild variant="ghost" className="text-blue-600 hover:text-blue-700 hover:bg-blue-50">
-              <Link to="/login"> {/* Botão "Entrar" agora leva para /login */}
+              <Link to="/login">
                 <User className="h-4 w-4 mr-2" />
                 Entrar
               </Link>
             </Button>
             <Button asChild className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white">
-              <Link to="/login"> {/* Botão "Começar Agora" agora leva para /login */}
+              <Link to="/signup">
                 Começar Agora
               </Link>
             </Button>
@@ -84,13 +82,13 @@ export const Header = () => {
               </a>
               <div className="flex flex-col space-y-2 pt-4 border-t border-blue-100">
                 <Button asChild variant="ghost" className="text-blue-600 justify-start">
-                  <Link to="/login"> {/* Botão "Entrar" no menu mobile */}
+                  <Link to="/login">
                     <User className="h-4 w-4 mr-2" />
                     Entrar
                   </Link>
                 </Button>
                 <Button asChild className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-                  <Link to="/login"> {/* Botão "Começar Agora" no menu mobile */}
+                  <Link to="/login">
                     Começar Agora
                   </Link>
                 </Button>
