@@ -1,97 +1,98 @@
-// src/pages/LevelSelectionPage.tsx
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dumbbell, Brain, Award } from "lucide-react"; // Ícones para os níveis
-import { useNavigate } from "react-router-dom"; // Para navegação
+import { Dumbbell, Brain, Award, ArrowLeft } from "lucide-react";
+import { useNavigate, Link } from "react-router-dom";
 
-const LevelSelectionPage = () => {
+export const LevelSelectionPage = () => {
   const navigate = useNavigate();
 
-  // Função para lidar com a seleção do nível
-  const handleLevelSelect = (levelKey: string) => { // Mudança aqui: agora recebe uma 'levelKey'
-    // Redireciona para a QuestionPage, passando a chave padronizada do nível na URL
-    navigate(`/game/question/${levelKey}`); // Passamos diretamente a chave padronizada
+  const handleLevelSelect = (levelKey: string) => {
+    navigate(`/game/question/${levelKey}`);
   };
 
   const levels = [
     {
       name: "1º ano Ensino Médio",
-      key: "facil", // Nova propriedade 'key' que será usada na URL e no questions.json
+      key: "facil",
       icon: Dumbbell,
-      description: "Conteúdo fundamental do primeiro ano do Ensino Médio. Ideal para reforçar a base.",
-      color: "from-green-400 to-green-600",
-      textColor: "text-green-800",
-      hoverColor: "hover:from-green-500 hover:to-green-700"
+      description: "Conteúdo fundamental do primeiro ano. Ideal para reforçar a base.",
+      color: "from-green-500 to-teal-500",
+      shadow: "shadow-green-500/30",
+      textColor: "text-green-800 dark:text-green-200"
     },
     {
       name: "2º ano Ensino Médio",
-      key: "medio", // Nova propriedade 'key'
+      key: "medio",
       icon: Brain,
-      description: "Tópicos e desafios do segundo ano do Ensino Médio. Aprofunde seus conhecimentos.",
-      color: "from-yellow-400 to-yellow-600",
-      textColor: "text-yellow-800",
-      hoverColor: "hover:from-yellow-500 hover:to-yellow-700"
+      description: "Tópicos e desafios do segundo ano. Aprofunde seus conhecimentos.",
+      color: "from-blue-500 to-indigo-500",
+      shadow: "shadow-blue-500/30",
+      textColor: "text-blue-800 dark:text-blue-200"
     },
     {
       name: "3º ano Ensino Médio",
-      key: "dificil", // Nova propriedade 'key'
+      key: "dificil",
       icon: Award,
-      description: "Revisão e aprofundamento para o terceiro ano e preparação para exames importantes.",
-      color: "from-red-400 to-red-600",
-      textColor: "text-red-800",
-      hoverColor: "hover:from-red-500 hover:to-red-700"
+      description: "Revisão e aprofundamento para exames importantes.",
+      color: "from-red-500 to-rose-500",
+      shadow: "shadow-red-500/30",
+      textColor: "text-red-800 dark:text-red-200"
     },
   ];
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-white to-green-50 px-4 py-8">
-      <div className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          Escolha o{" "}
-          <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-            Ano Escolar
-          </span>
+    <main className="relative min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50 dark:from-gray-900 dark:to-gray-800 p-4 sm:p-8 overflow-hidden">
+      
+      {/* --- BOTÃO VOLTAR --- */}
+      <div className="absolute top-6 left-6 z-10">
+        <Button asChild variant="ghost" className="text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">
+          <Link to="/">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Voltar para o Início
+          </Link>
+        </Button>
+      </div>
+      
+      <div className="text-center w-full max-w-4xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-bold mb-3 text-gray-800 dark:text-gray-100">
+          Escolha o <span className="text-blue-600">Ano Escolar</span>
         </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Selecione o ano do Ensino Médio para começar a praticar português.
+        <p className="text-lg text-gray-600 dark:text-gray-400 mb-12">
+          Selecione o nível para começar a praticar.
         </p>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
-        {levels.map((level, index) => (
-          <Card
-            key={index}
-            className={`shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border-gray-200`}
-            // Ao clicar, passamos a 'level.key' que é 'facil', 'medio' ou 'dificil'
-            onClick={() => handleLevelSelect(level.key)}
-          >
-            <CardHeader className="text-center pb-4">
-              <div className={`w-20 h-20 rounded-full bg-gradient-to-br ${level.color} flex items-center justify-center mx-auto mb-4`}>
-                <level.icon className="h-10 w-10 text-white" />
-              </div>
-              <CardTitle className={`text-2xl font-bold ${level.textColor}`}>
-                {level.name}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-center">
-              <CardDescription className="text-gray-600 leading-relaxed">
-                {level.description}
-              </CardDescription>
-              <Button
-                className={`mt-6 w-full bg-gradient-to-r ${level.color} ${level.hoverColor} text-white font-semibold py-3`}
-                // O botão também usa a 'level.key'
-                onClick={(e) => {
-                  e.stopPropagation(); // Previne que o click do botão acione o click do Card
-                  handleLevelSelect(level.key);
-                }}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {levels.map((level) => (
+            <div
+              key={level.key}
+              onClick={() => handleLevelSelect(level.key)}
+              className="group cursor-pointer"
+            >
+              <Card
+                className={`w-full h-full text-left rounded-2xl border-2 border-transparent transition-all duration-300 ease-in-out group-hover:border-blue-500 group-hover:shadow-2xl group-hover:-translate-y-2 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm ${level.shadow}`}
               >
-                Selecionar {level.name}
-              </Button>
-            </CardContent>
-          </Card>
-        ))}
+                <CardHeader className="pt-8 px-8">
+                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${level.color} flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110`}>
+                    <level.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className={`text-2xl font-bold text-gray-900 dark:text-white`}>
+                    {level.name}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="px-8 pb-8">
+                  <CardDescription className="text-gray-600 dark:text-gray-400 text-base min-h-[3rem]">
+                    {level.description}
+                  </CardDescription>
+                  <div className="mt-6 font-semibold text-blue-600 dark:text-blue-400 flex items-center">
+                    Começar agora <ArrowLeft className="h-4 w-4 ml-2 transition-transform duration-300 group-hover:translate-x-1 rotate-180" />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 

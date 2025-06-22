@@ -1,0 +1,23 @@
+[
+  {
+    "email": "ana@email.com",
+    "name": "Ana Silva",
+    "school": "Colégio Exemplo",
+    "score": 2850,
+    "password": "ana_senha_123"
+  },
+  {
+    "email": "carlos@email.com",
+    "name": "Carlos Santos",
+    "school": "Escola Modelo",
+    "score": 2640,
+    "password": "carlos_senha_456"
+  },
+  {
+    "email": "maria@email.com",
+    "name": "Maria Oliveira",
+    "school": "Colégio Exemplo",
+    "score": 2520,
+    "password": "maria_senha_789"
+  }
+]

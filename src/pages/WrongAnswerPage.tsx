@@ -10,7 +10,7 @@ const WrongAnswerPage = () => {
   const handleTryAgain = () => {
     // Em uma aplicação real, você poderia voltar para a mesma pergunta
     // ou dar uma nova. Para esta demo, volta para o game.
-    navigate('/game');
+    navigate('/select-level');
   };
 
   return (

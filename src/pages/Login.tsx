@@ -1,7 +1,4 @@
-// src/pages/Login.tsx
-import { useForm } from "react-hook-form";
-// import { zodResolver } from "@hookform/resolvers/zod"; // Comentei o zodResolver
-// import * as z from "zod"; // Comentei o zod
+import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -12,54 +9,72 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import apiClient from "@/api";
+import { useAuth } from "@/contexts/AuthContext";
+import { useTheme } from "@/components/ThemeProvider"; // 1. Importar o hook de tema
 
-// Removi o formSchema para permitir qualquer dado para demonstração
-/*
-const formSchema = z.object({
-  email: z.string().email({ message: "Por favor, insira um endereço de e-mail válido." }),
-  password: z.string().min(6, { message: "A senha deve ter pelo menos 6 caracteres." }),
-});
-*/
+type LoginFormValues = {
+  email: string;
+  password: string;
+};
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
+  const { theme } = useTheme(); // 2. Usar o hook para pegar o tema atual
+  const [error, setError] = useState<string | null>(null);
 
-  const form = useForm({
-    // resolver: zodResolver(formSchema), // Comentei o resolver
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+  const form = useForm<LoginFormValues>({
+    defaultValues: { email: "", password: "" },
   });
 
-  const onSubmit = (values: any) => {
-    // Salva o usuário no localStorage
-    localStorage.setItem("portgoUser", JSON.stringify({ email: values.email, name: values.name || "" }));
-    // Inicializa a pontuação se não existir
-    if (!localStorage.getItem("portgoScore")) {
-      localStorage.setItem("portgoScore", "0");
+  const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
+    setError(null);
+    try {
+      const formData = new URLSearchParams();
+      formData.append("username", data.email);
+      formData.append("password", data.password);
+
+      const response = await apiClient.post("/token", formData, {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      });
+
+      if (response.data && response.data.user && response.data.access_token) {
+        login(response.data.user, response.data.access_token);
+        navigate("/");
+      }
+    } catch (err) {
+      setError("Falha no login. Verifique seu e-mail e senha.");
+      console.error("Erro no login:", err);
     }
-    navigate("/");
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-green-50 px-4">
-      <Card className="w-full max-w-md shadow-xl">
+    <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-gray-900 px-4">
+      <Card className="w-full max-w-md shadow-xl dark:bg-gray-800 dark:border-gray-700">
         <CardHeader className="text-center">
-          {/* Logo adicionado aqui */}
-          <div className="flex justify-center mb-4">
+          <Link to="/" className="flex justify-center mb-4">
+            {/* 3. A logo agora muda com base no tema */}
             <img
-              src="/PortGO_logo branco.png" // Caminho para o logo na pasta public
+              src={theme === 'dark' ? '/PortGO_logo branco.png' : '/PortGO_logo preto.png'}
               alt="PortGO Logo"
-              className="h-24 w-auto" // Tamanho do logo
+              className="h-24 w-auto"
             />
-          </div>
-          <CardTitle className="text-3xl font-bold">Bem-vindo(a) de volta!</CardTitle>
-          <CardDescription className="text-gray-600">
-            Entre na sua conta para continuar sua jornada de aprendizado.
+          </Link>
+          <CardTitle className="text-3xl font-bold dark:text-white">
+            Bem-vindo(a) de volta!
+          </CardTitle>
+          <CardDescription className="text-gray-600 dark:text-gray-400">
+            Entre na sua conta para continuar.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -70,9 +85,13 @@ const Login = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel className="dark:text-gray-200">Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="seu@email.com" {...field} />
+                      <Input
+                        className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        placeholder="seu@email.com"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -83,28 +102,51 @@ const Login = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Senha</FormLabel>
+                    <FormLabel className="dark:text-gray-200">Senha</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="********" {...field} />
+                      <Input
+                        className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        type="password"
+                        placeholder="********"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+              {error && (
+                <p className="text-sm font-medium text-destructive">{error}</p>
+              )}
               <div className="text-right text-sm">
-                <Link to="/forgot-password" className="text-blue-600 hover:underline">
+                <Link
+                  to="/forgot-password"
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                >
                   Esqueceu a senha?
                 </Link>
               </div>
-              <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-2">
+              <Button type="submit" className="w-full">
                 Entrar
               </Button>
             </form>
           </Form>
-          <div className="mt-6 text-center text-sm">
+          <div className="mt-6 text-center text-sm dark:text-gray-300">
             Não tem uma conta?{" "}
-            <Link to="/signup" className="text-blue-600 hover:underline">
+            <Link
+              to="/signup"
+              className="text-blue-600 dark:text-blue-400 hover:underline"
+            >
               Cadastre-se
+            </Link>
+          </div>
+          {/* 4. Botão para voltar para a tela inicial */}
+          <div className="mt-4 text-center text-sm">
+            <Link
+              to="/"
+              className="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 hover:underline transition-colors"
+            >
+              Voltar para a tela inicial
             </Link>
           </div>
         </CardContent>

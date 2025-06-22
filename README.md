@@ -1,73 +1,78 @@
-# Welcome to your Lovable project
+PortGO - Guia de Execução Local
+Este guia contém todas as instruções necessárias para configurar e executar o projeto PortGO (Frontend e Backend) em seu ambiente de desenvolvimento.
 
-## Project info
+Pré-requisitos
+Antes de começar, garanta que você tenha os seguintes softwares instalados em sua máquina:
 
-**URL**: https://lovable.dev/projects/c260548a-4721-4f15-9379-5fdf09250ddb
+Node.js: Essencial para rodar o frontend em React.
+Python: Essencial para rodar o backend em FastAPI.
+Passo a Passo para Execução
+O projeto é dividido em duas partes que precisam ser executadas simultaneamente: o Backend (a API) e o Frontend (a interface visual). Você precisará de dois terminais abertos.
 
-## How can I edit this code?
+1. Configurando e Executando o Backend (API)
+O backend é o cérebro da aplicação, responsável por gerenciar os dados.
 
-There are several ways of editing your application.
+a) Navegue até a pasta da API:
+Abra seu primeiro terminal e navegue até a pasta api do projeto.
 
-**Use Lovable**
+Bash
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c260548a-4721-4f15-9379-5fdf09250ddb) and start prompting.
+cd api
+b) Crie o arquivo de configuração .env:
+Dentro da pasta api, crie um arquivo chamado .env e cole o seguinte conteúdo. Este arquivo guarda as configurações da sua API.
 
-Changes made via Lovable will be committed automatically to this repo.
+Snippet de código
 
-**Use your preferred IDE**
+DATABASE_URL="sqlite:///./portgo.db"
+SECRET_KEY="uma_chave_secreta_muito_forte_pode_ser_qualquer_coisa"
+ALGORITHM="HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+c) Instale as dependências Python:
+Execute o comando abaixo para instalar todas as bibliotecas que o backend precisa.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Bash
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+# Se o comando 'pip' não for reconhecido, use 'py -m pip'
+pip install -r requirements.txt
+d) Popule o Banco de Dados:
+Este comando executa o script que adiciona os usuários e questões iniciais ao banco de dados.
 
-Follow these steps:
+Bash
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Se o comando 'python' não for reconhecido, use 'py'
+python seed.py
+e) Inicie o servidor da API:
+Finalmente, inicie o servidor do backend.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Bash
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Se o comando 'uvicorn' não for reconhecido, use 'py -m uvicorn'
+uvicorn main:app --reload --port 8001
+✅ Sucesso! Seu backend agora está rodando e escutando na porta 8001. Mantenha este terminal aberto.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+2. Configurando e Executando o Frontend (React App)
+O frontend é a parte visual do projeto com a qual você interage no navegador.
+
+a) Navegue até a pasta raiz do projeto:
+Abra um novo terminal. Nele, navegue para a pasta raiz do projeto (a pasta que contém src, api, package.json, etc.).
+
+b) Instale as dependências do Frontend:
+Este comando irá baixar todas as bibliotecas necessárias para o React.
+
+Bash
+
+npm install
+c) Inicie o servidor de desenvolvimento:
+Este comando compila e executa a aplicação React.
+
+Bash
+
 npm run dev
-```
+✅ Sucesso! O terminal irá mostrar a URL onde sua aplicação está rodando, geralmente http://localhost:8080.
 
-**Edit a file directly in GitHub**
+Resumo Final
+Ao final de todos os passos, você terá:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/c260548a-4721-4f15-9379-5fdf09250ddb) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Um terminal rodando o Backend na porta 8001.
+Um segundo terminal rodando o Frontend na porta 8080 (ou a que for indicada).
+Agora, basta acessar a URL do frontend (http://localhost:8080) no seu navegador para usar o PortGO!

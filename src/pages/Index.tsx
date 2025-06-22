@@ -1,20 +1,13 @@
-
-import { Header } from "@/components/Header";
-import { HeroSection } from "@/components/HeroSection";
-import { FeaturesSection } from "@/components/FeaturesSection";
-import { RankingPreview } from "@/components/RankingPreview";
-import { Footer } from "@/components/Footer";
+import { useAuth } from "@/contexts/AuthContext";
+import DashboardPage from "./DashboardPage";
+import PublicHomePage from "./PublicHomePage";
 
 const Index = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
-      <Header />
-      <HeroSection />
-      <FeaturesSection />
-      <RankingPreview />
-      <Footer />
-    </div>
-  );
+  const { isAuthenticated } = useAuth();
+
+  // Se o usuário estiver autenticado, mostra o Dashboard.
+  // Caso contrário, mostra a página inicial pública.
+  return isAuthenticated ? <DashboardPage /> : <PublicHomePage />;
 };
 
 export default Index;

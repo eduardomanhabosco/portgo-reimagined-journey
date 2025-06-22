@@ -13,30 +13,36 @@ import LevelSelectionPage from "./pages/LevelSelectionPage"; // Importar a nova 
 import QuestionPage from "./pages/QuestionPage"; // Importar QuestionPage
 import CorrectAnswerPage from "./pages/CorrectAnswerPage"; // Importar CorrectAnswerPage
 import WrongAnswerPage from "./pages/WrongAnswerPage"; // Importar WrongAnswerPage
-
+import { AuthProvider } from "./contexts/AuthContext";
+import RankingPage from "./pages/RankingPage";
+import SettingsPage from "./pages/SettingsPage"; // Importe a página
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
+    <TooltipProvider>
+      <AuthProvider> {/* Envolva suas rotas aqui */}
         <Toaster />
         <Sonner />
         <BrowserRouter>
           <Routes>
+             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/game" element={<GamePage />} />
-            <Route path="/select-level" element={<LevelSelectionPage />} /> {/* Nova rota para seleção de níveis */}
-            <Route path="/game/question/:levelName" element={<QuestionPage />} /> {/* Rota para perguntas com parâmetro de nível */}
+            <Route path="/select-level" element={<LevelSelectionPage />} />
+            <Route path="/game/question/:levelName" element={<QuestionPage />} />
             <Route path="/correct-answer" element={<CorrectAnswerPage />} />
+            <Route path="/ranking" element={<RankingPage />} />
             <Route path="/wrong-answer" element={<WrongAnswerPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-      </TooltipProvider>
+      </AuthProvider>
+    </TooltipProvider>
   </QueryClientProvider>
 );
 

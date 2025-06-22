@@ -1,12 +1,23 @@
-
 import { GraduationCap, Mail, MapPin, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext"; // 1. Importar o hook de autenticação
 
 export const Footer = () => {
+  const { isAuthenticated } = useAuth(); // 2. Usar o hook para verificar o status do login
+
+  // 3. Definir os links dinamicamente com base no status de login
+  const navLinks = [
+    { name: 'Início', path: isAuthenticated ? '/' : '#inicio' },
+    { name: 'Exercícios', path: isAuthenticated ? '/select-level' : '#exercicios' },
+    { name: 'Ranking', path: isAuthenticated ? '/ranking' : '#ranking' },
+    // O link "Sobre Nós" foi removido daqui
+  ];
+
   return (
     <footer className="bg-gray-900 text-white py-16">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Logo and Description */}
+          {/* Logo e Descrição */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
               <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-2 rounded-xl">
@@ -38,30 +49,25 @@ export const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-6">Links Rápidos</h4>
             <ul className="space-y-3">
-              <li>
-                <a href="#inicio" className="text-gray-300 hover:text-white transition-colors">
-                  Início
-                </a>
-              </li>
-              <li>
-                <a href="#exercicios" className="text-gray-300 hover:text-white transition-colors">
-                  Exercícios
-                </a>
-              </li>
-              <li>
-                <a href="#ranking" className="text-gray-300 hover:text-white transition-colors">
-                  Ranking
-                </a>
-              </li>
-              <li>
-                <a href="#sobre" className="text-gray-300 hover:text-white transition-colors">
-                  Sobre Nós
-                </a>
-              </li>
+              {/* 4. Mapear os links dinâmicos */}
+              {navLinks.map(link => (
+                <li key={link.name}>
+                  {/* Se for um link de âncora (começa com #), usa <a>. Se for uma rota interna, usa <Link> */}
+                  {link.path.startsWith("#") ? (
+                    <a href={link.path} className="text-gray-300 hover:text-white transition-colors">
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link to={link.path} className="text-gray-300 hover:text-white transition-colors">
+                      {link.name}
+                    </Link>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Informações de Contato */}
           <div>
             <h4 className="text-lg font-semibold mb-6">Contato</h4>
             <ul className="space-y-3">
@@ -81,7 +87,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Barra Inferior */}
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
             © 2024 PortGO. Todos os direitos reservados.
