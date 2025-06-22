@@ -36,8 +36,12 @@ const Login = () => {
   });
 
   const onSubmit = (values: any) => {
-    console.log("Dados de login (apenas para demonstração):", values);
-    alert("Login 'bem-sucedido' com qualquer dado! (Apenas para demonstração)");
+    // Salva o usuário no localStorage
+    localStorage.setItem("portgoUser", JSON.stringify({ email: values.email, name: values.name || "" }));
+    // Inicializa a pontuação se não existir
+    if (!localStorage.getItem("portgoScore")) {
+      localStorage.setItem("portgoScore", "0");
+    }
     navigate("/");
   };
 

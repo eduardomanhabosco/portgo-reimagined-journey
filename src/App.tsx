@@ -1,4 +1,3 @@
-// src/App.tsx
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,27 +7,36 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import ForgotPassword from "./pages/ForgotPassword"; // Importa o novo componente ForgotPassword
+import ForgotPassword from "./pages/ForgotPassword";
+import GamePage from "./pages/GamePage";
+import LevelSelectionPage from "./pages/LevelSelectionPage"; // Importar a nova página de seleção de níveis
+import QuestionPage from "./pages/QuestionPage"; // Importar QuestionPage
+import CorrectAnswerPage from "./pages/CorrectAnswerPage"; // Importar CorrectAnswerPage
+import WrongAnswerPage from "./pages/WrongAnswerPage"; // Importar WrongAnswerPage
+
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />{" "}
-          {/* Adiciona a rota de esqueceu a senha */}
-          {/* ADICIONE TODAS AS ROTAS PERSONALIZADAS ACIMA DA ROTA "PEGAR TUDO" "*" */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/game" element={<GamePage />} />
+            <Route path="/select-level" element={<LevelSelectionPage />} /> {/* Nova rota para seleção de níveis */}
+            <Route path="/game/question/:levelName" element={<QuestionPage />} /> {/* Rota para perguntas com parâmetro de nível */}
+            <Route path="/correct-answer" element={<CorrectAnswerPage />} />
+            <Route path="/wrong-answer" element={<WrongAnswerPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
   </QueryClientProvider>
 );
 

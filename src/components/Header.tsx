@@ -17,7 +17,7 @@ export const Header = () => {
               <img
                 src="/PortGO_logo branco.png" // Caminho para o logo na pasta public
                 alt="PortGO Logo"
-                className="h-24 w-auto group-hover:scale-150 transition-transform" // Aumentado para h-20 (80px)
+                className="h-10 w-auto group-hover:scale-150 transition-transform" // Aumentado para h-20 (80px)
               />
             </Link>
           </div>

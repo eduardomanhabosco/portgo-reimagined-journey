@@ -1,0 +1,17 @@
+[
+  {
+    "email": "ana@email.com",
+    "name": "Ana Silva",
+    "score": 2850
+  },
+  {
+    "email": "carlos@email.com",
+    "name": "Carlos Santos",
+    "score": 2640
+  },
+  {
+    "email": "maria@email.com",
+    "name": "Maria Oliveira",
+    "score": 2520
+  }
+]

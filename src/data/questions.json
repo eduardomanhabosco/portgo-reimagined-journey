@@ -1,0 +1,368 @@
+{
+  "facil": [
+    {
+      "id": "f1",
+      "text": "Qual é a capital do Brasil?",
+      "options": [
+        { "key": "A", "value": "Rio de Janeiro" },
+        { "key": "B", "value": "Brasília" },
+        { "key": "C", "value": "São Paulo" },
+        { "key": "D", "value": "Salvador" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "Geografia"
+    },
+    {
+      "id": "f2",
+      "text": "Qual é o maior planeta do Sistema Solar?",
+      "options": [
+        { "key": "A", "value": "Terra" },
+        { "key": "B", "value": "Júpiter" },
+        { "key": "C", "value": "Saturno" },
+        { "key": "D", "value": "Marte" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "Ciências"
+    },
+    {
+      "id": "f3",
+      "text": "Quem descobriu o Brasil?",
+      "options": [
+        { "key": "A", "value": "Pedro Álvares Cabral" },
+        { "key": "B", "value": "Cristóvão Colombo" },
+        { "key": "C", "value": "Dom Pedro I" },
+        { "key": "D", "value": "Vasco da Gama" }
+      ],
+      "correctAnswerKey": "A",
+      "source": "História"
+    },
+    {
+      "id": "f4",
+      "text": "Qual é o animal símbolo do Brasil?",
+      "options": [
+        { "key": "A", "value": "Onça-pintada" },
+        { "key": "B", "value": "Tucano" },
+        { "key": "C", "value": "Arara" },
+        { "key": "D", "value": "Mico-leão-dourado" }
+      ],
+      "correctAnswerKey": "D",
+      "source": "Biologia"
+    },
+    {
+      "id": "f5",
+      "text": "Qual é o principal idioma falado no Brasil?",
+      "options": [
+        { "key": "A", "value": "Espanhol" },
+        { "key": "B", "value": "Português" },
+        { "key": "C", "value": "Inglês" },
+        { "key": "D", "value": "Francês" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "Língua"
+    },
+    {
+      "id": "f6",
+      "text": "Qual é o maior rio do Brasil?",
+      "options": [
+        { "key": "A", "value": "Rio São Francisco" },
+        { "key": "B", "value": "Rio Paraná" },
+        { "key": "C", "value": "Rio Amazonas" },
+        { "key": "D", "value": "Rio Tocantins" }
+      ],
+      "correctAnswerKey": "C",
+      "source": "Geografia"
+    },
+    {
+      "id": "f7",
+      "text": "Qual destes é um estado brasileiro?",
+      "options": [
+        { "key": "A", "value": "Buenos Aires" },
+        { "key": "B", "value": "Lisboa" },
+        { "key": "C", "value": "Bahia" },
+        { "key": "D", "value": "Paris" }
+      ],
+      "correctAnswerKey": "C",
+      "source": "Geografia"
+    },
+    {
+      "id": "f8",
+      "text": "Quem foi o primeiro presidente do Brasil?",
+      "options": [
+        { "key": "A", "value": "Getúlio Vargas" },
+        { "key": "B", "value": "Deodoro da Fonseca" },
+        { "key": "C", "value": "Juscelino Kubitschek" },
+        { "key": "D", "value": "Lula" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "História"
+    },
+    {
+      "id": "f9",
+      "text": "Qual é o menor continente do mundo?",
+      "options": [
+        { "key": "A", "value": "África" },
+        { "key": "B", "value": "Europa" },
+        { "key": "C", "value": "Oceania" },
+        { "key": "D", "value": "Antártida" }
+      ],
+      "correctAnswerKey": "C",
+      "source": "Geografia"
+    },
+    {
+      "id": "f10",
+      "text": "Qual destes é um instrumento musical de cordas?",
+      "options": [
+        { "key": "A", "value": "Violão" },
+        { "key": "B", "value": "Flauta" },
+        { "key": "C", "value": "Bateria" },
+        { "key": "D", "value": "Saxofone" }
+      ],
+      "correctAnswerKey": "A",
+      "source": "Artes"
+    }
+  ],
+  "medio": [
+    {
+      "id": "m1",
+      "text": "Quem escreveu 'Dom Casmurro'?",
+      "options": [
+        { "key": "A", "value": "Machado de Assis" },
+        { "key": "B", "value": "José de Alencar" },
+        { "key": "C", "value": "Carlos Drummond" },
+        { "key": "D", "value": "Clarice Lispector" }
+      ],
+      "correctAnswerKey": "A",
+      "source": "Literatura"
+    },
+    {
+      "id": "m2",
+      "text": "Qual é o resultado da expressão: 2x + 3 = 7?",
+      "options": [
+        { "key": "A", "value": "x = 1" },
+        { "key": "B", "value": "x = 2" },
+        { "key": "C", "value": "x = 3" },
+        { "key": "D", "value": "x = 4" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "Matemática"
+    },
+    {
+      "id": "m3",
+      "text": "Em que ano ocorreu a Proclamação da República no Brasil?",
+      "options": [
+        { "key": "A", "value": "1889" },
+        { "key": "B", "value": "1822" },
+        { "key": "C", "value": "1500" },
+        { "key": "D", "value": "1922" }
+      ],
+      "correctAnswerKey": "A",
+      "source": "História"
+    },
+    {
+      "id": "m4",
+      "text": "Qual é o símbolo químico do ouro?",
+      "options": [
+        { "key": "A", "value": "Ag" },
+        { "key": "B", "value": "Au" },
+        { "key": "C", "value": "O" },
+        { "key": "D", "value": "Pb" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "Química"
+    },
+    {
+      "id": "m5",
+      "text": "Quem pintou a Mona Lisa?",
+      "options": [
+        { "key": "A", "value": "Vincent van Gogh" },
+        { "key": "B", "value": "Leonardo da Vinci" },
+        { "key": "C", "value": "Pablo Picasso" },
+        { "key": "D", "value": "Claude Monet" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "Artes"
+    },
+    {
+      "id": "m6",
+      "text": "Qual é a fórmula da água?",
+      "options": [
+        { "key": "A", "value": "CO2" },
+        { "key": "B", "value": "H2O" },
+        { "key": "C", "value": "O2" },
+        { "key": "D", "value": "NaCl" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "Química"
+    },
+    {
+      "id": "m7",
+      "text": "Qual é o maior órgão do corpo humano?",
+      "options": [
+        { "key": "A", "value": "Coração" },
+        { "key": "B", "value": "Fígado" },
+        { "key": "C", "value": "Pele" },
+        { "key": "D", "value": "Pulmão" }
+      ],
+      "correctAnswerKey": "C",
+      "source": "Biologia"
+    },
+    {
+      "id": "m8",
+      "text": "Quem foi o autor de 'O Pequeno Príncipe'?",
+      "options": [
+        { "key": "A", "value": "Antoine de Saint-Exupéry" },
+        { "key": "B", "value": "J.K. Rowling" },
+        { "key": "C", "value": "George Orwell" },
+        { "key": "D", "value": "Machado de Assis" }
+      ],
+      "correctAnswerKey": "A",
+      "source": "Literatura"
+    },
+    {
+      "id": "m9",
+      "text": "Qual é a função do ribossomo na célula?",
+      "options": [
+        { "key": "A", "value": "Produção de energia" },
+        { "key": "B", "value": "Síntese de proteínas" },
+        { "key": "C", "value": "Armazenamento de água" },
+        { "key": "D", "value": "Transporte de oxigênio" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "Biologia"
+    },
+    {
+      "id": "m10",
+      "text": "Qual é o valor de π (pi) arredondado para duas casas decimais?",
+      "options": [
+        { "key": "A", "value": "3,12" },
+        { "key": "B", "value": "3,14" },
+        { "key": "C", "value": "3,16" },
+        { "key": "D", "value": "3,18" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "Matemática"
+    }
+  ],
+  "dificil": [
+    {
+      "id": "d1",
+      "text": "O que significa a palavra 'inexorável'?",
+      "options": [
+        { "key": "A", "value": "Que não pode ser detido" },
+        { "key": "B", "value": "Que é engraçado" },
+        { "key": "C", "value": "Que é flexível" },
+        { "key": "D", "value": "Que é passageiro" }
+      ],
+      "correctAnswerKey": "A",
+      "source": "Vocabulário"
+    },
+    {
+      "id": "d2",
+      "text": "Qual é a principal característica do Modernismo na literatura brasileira?",
+      "options": [
+        { "key": "A", "value": "Uso de linguagem rebuscada" },
+        { "key": "B", "value": "Ruptura com padrões tradicionais" },
+        { "key": "C", "value": "Valorização do passado" },
+        { "key": "D", "value": "Temas religiosos" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "Literatura"
+    },
+    {
+      "id": "d3",
+      "text": "Qual é a equação geral da reta no plano cartesiano?",
+      "options": [
+        { "key": "A", "value": "y = mx + b" },
+        { "key": "B", "value": "ax^2 + bx + c = 0" },
+        { "key": "C", "value": "a^2 + b^2 = c^2" },
+        { "key": "D", "value": "E = mc^2" }
+      ],
+      "correctAnswerKey": "A",
+      "source": "Matemática"
+    },
+    {
+      "id": "d4",
+      "text": "Quem foi o presidente do Brasil durante o Estado Novo?",
+      "options": [
+        { "key": "A", "value": "Juscelino Kubitschek" },
+        { "key": "B", "value": "Getúlio Vargas" },
+        { "key": "C", "value": "Fernando Henrique Cardoso" },
+        { "key": "D", "value": "Dilma Rousseff" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "História"
+    },
+    {
+      "id": "d5",
+      "text": "Qual é a função do mitocôndria na célula?",
+      "options": [
+        { "key": "A", "value": "Síntese de proteínas" },
+        { "key": "B", "value": "Produção de energia" },
+        { "key": "C", "value": "Armazenamento de água" },
+        { "key": "D", "value": "Digestão celular" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "Biologia"
+    },
+    {
+      "id": "d6",
+      "text": "Qual é o nome do processo de separação dos componentes do petróleo?",
+      "options": [
+        { "key": "A", "value": "Destilação fracionada" },
+        { "key": "B", "value": "Filtração" },
+        { "key": "C", "value": "Decantação" },
+        { "key": "D", "value": "Evaporação" }
+      ],
+      "correctAnswerKey": "A",
+      "source": "Química"
+    },
+    {
+      "id": "d7",
+      "text": "Quem foi o autor de 'Grande Sertão: Veredas'?",
+      "options": [
+        { "key": "A", "value": "Jorge Amado" },
+        { "key": "B", "value": "Guimarães Rosa" },
+        { "key": "C", "value": "José de Alencar" },
+        { "key": "D", "value": "Manuel Bandeira" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "Literatura"
+    },
+    {
+      "id": "d8",
+      "text": "Qual é a principal função dos lisossomos?",
+      "options": [
+        { "key": "A", "value": "Produção de energia" },
+        { "key": "B", "value": "Digestão celular" },
+        { "key": "C", "value": "Síntese de proteínas" },
+        { "key": "D", "value": "Armazenamento de água" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "Biologia"
+    },
+    {
+      "id": "d9",
+      "text": "Qual é o nome do fenômeno de mudança do estado sólido para o gasoso?",
+      "options": [
+        { "key": "A", "value": "Fusão" },
+        { "key": "B", "value": "Sublimação" },
+        { "key": "C", "value": "Condensação" },
+        { "key": "D", "value": "Evaporação" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "Química"
+    },
+    {
+      "id": "d10",
+      "text": "Em que ano foi promulgada a atual Constituição Federal do Brasil?",
+      "options": [
+        { "key": "A", "value": "1964" },
+        { "key": "B", "value": "1988" },
+        { "key": "C", "value": "2002" },
+        { "key": "D", "value": "1946" }
+      ],
+      "correctAnswerKey": "B",
+      "source": "História"
+    }
+  ]
+}

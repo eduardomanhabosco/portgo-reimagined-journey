@@ -1,6 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { BookOpen, TrendingUp, Users } from "lucide-react";
+import { Link } from "react-router-dom"; // Importar Link
 
 export const HeroSection = () => {
   return (
@@ -34,20 +34,25 @@ export const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button 
-              size="lg" 
+            <Button
+              asChild // Necessário para que o Button renderize o Link como seu filho
+              size="lg"
               className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all"
             >
-              <BookOpen className="h-5 w-5 mr-2" />
-              Começar a Estudar
+              <Link to="/game"> {/* Agora leva para /game */}
+                <BookOpen className="h-5 w-5 mr-2" />
+                Começar a Estudar
+              </Link>
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
+            <Button
+              variant="outline"
+              size="lg"
               className="border-blue-200 text-blue-700 hover:bg-blue-50 px-8 py-6 text-lg rounded-xl"
             >
-              <Users className="h-5 w-5 mr-2" />
-              Ver Ranking
+              <a href="#ranking">
+                <Users className="h-5 w-5 mr-2" />
+                Ver Ranking
+              </a>
             </Button>
           </div>
 
