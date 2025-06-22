@@ -1,6 +1,7 @@
+// src/pages/LevelSelectionPage.tsx
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dumbbell, Brain, Award, ArrowLeft } from "lucide-react";
+import { Dumbbell, Brain, Award, ArrowLeft, Book } from "lucide-react"; // Importe o ícone Book
 import { useNavigate, Link } from "react-router-dom";
 
 export const LevelSelectionPage = () => {
@@ -57,9 +58,19 @@ export const LevelSelectionPage = () => {
         <h1 className="text-4xl md:text-5xl font-bold mb-3 text-gray-800 dark:text-gray-100">
           Escolha o <span className="text-blue-600">Ano Escolar</span>
         </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400 mb-12">
+        <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
           Selecione o nível para começar a praticar.
         </p>
+
+        {/* --- BOTÃO DE REGRAS --- */}
+        <div className="mb-12">
+          <Button asChild variant="outline" className="text-purple-600 dark:text-purple-400 border-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20">
+            <Link to="/rules">
+              <Book className="mr-2 h-4 w-4" />
+              Ver Regras do Jogo
+            </Link>
+          </Button>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {levels.map((level) => (

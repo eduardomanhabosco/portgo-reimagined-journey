@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { useAuth } from "@/contexts/AuthContext";
 import apiClient from "@/api";
 import { toast } from "sonner";
+import { useTheme } from "@/components/ThemeProvider"; // 1. Importar o hook de tema
 
 interface Question { id: string; text: string; options: { key: string; value: string }[]; correct_answer_key: string; source: string; }
 type Level = "facil" | "medio" | "dificil";
@@ -16,6 +17,7 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 const QuestionPage = () => {
+  const { theme } = useTheme(); // 2. Usar o hook para pegar o tema atual
   const { levelName } = useParams<{ levelName: Level }>();
   const navigate = useNavigate();
   const { auth, updateUserScore } = useAuth();
@@ -69,7 +71,11 @@ const QuestionPage = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-slate-100 dark:bg-gray-900 p-4">
       <div className="w-full max-w-3xl flex justify-between items-center bg-white/90 dark:bg-gray-800/90 p-4 rounded-2xl shadow-lg mb-6">
         <div>
-          <Link to="/"><img src="/PortGO_logo branco.png" alt="PortGO Logo" className="h-12 w-auto"/></Link>
+          <Link to="/">            <img
+              src={theme === 'dark' ? '/PortGO_logo branco.png' : '/PortGO_logo preto.png'}
+              alt="PortGO Logo"
+              className="h-24 w-auto"
+            /></Link>
           {auth.user && <div className="text-sm text-gray-600 dark:text-gray-300 mt-1">Jogador: <span className="font-semibold">{auth.user.name}</span></div>}
         </div>
         <span className="text-lg font-semibold text-blue-700 dark:text-blue-300">Pontuação: <span className="font-bold">{auth.user?.score ?? 0}</span></span>

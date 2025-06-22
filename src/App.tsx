@@ -1,3 +1,4 @@
+// src/App.tsx
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,20 +10,21 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import ForgotPassword from "./pages/ForgotPassword";
 import GamePage from "./pages/GamePage";
-import LevelSelectionPage from "./pages/LevelSelectionPage"; // Importar a nova página de seleção de níveis
-import QuestionPage from "./pages/QuestionPage"; // Importar QuestionPage
-import CorrectAnswerPage from "./pages/CorrectAnswerPage"; // Importar CorrectAnswerPage
-import WrongAnswerPage from "./pages/WrongAnswerPage"; // Importar WrongAnswerPage
+import LevelSelectionPage from "./pages/LevelSelectionPage";
+import QuestionPage from "./pages/QuestionPage";
+import CorrectAnswerPage from "./pages/CorrectAnswerPage";
+import WrongAnswerPage from "./pages/WrongAnswerPage";
+import RulesPage from "./pages/RulesPage"; // Importar a nova página de regras
 import { AuthProvider } from "./contexts/AuthContext";
 import RankingPage from "./pages/RankingPage";
-import SettingsPage from "./pages/SettingsPage"; // Importe a página
+import SettingsPage from "./pages/SettingsPage";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <AuthProvider> {/* Envolva suas rotas aqui */}
+      <AuthProvider>
         <Toaster />
         <Sonner />
         <BrowserRouter>
@@ -38,6 +40,7 @@ const App = () => (
             <Route path="/correct-answer" element={<CorrectAnswerPage />} />
             <Route path="/ranking" element={<RankingPage />} />
             <Route path="/wrong-answer" element={<WrongAnswerPage />} />
+            <Route path="/rules" element={<RulesPage />} /> {/* Adicionar a rota para a página de regras */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
