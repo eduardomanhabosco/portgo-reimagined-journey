@@ -18,10 +18,10 @@ const RulesPage = () => {
 
       <div className="text-center w-full max-w-4xl mx-auto bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl p-8">
         <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800 dark:text-gray-100">
-          Regras do <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">MathGO</span>
+          Regras do <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">PortGO</span>
         </h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-          O MathGO é um jogo de perguntas e respostas que abrange todo o conteúdo de Matemática do Ensino Fundamental e Médio, através do qual você pode estudar Matemática para o ENEM ou Vestibular em quanto se diverte no processo!
+          O PortGO é um jogo de perguntas e respostas que abrange todo o conteúdo de Matemática do Ensino Fundamental e Médio, através do qual você pode estudar Matemática para o ENEM ou Vestibular em quanto se diverte no processo!
         </p>
 
         <div className="text-left space-y-6">
