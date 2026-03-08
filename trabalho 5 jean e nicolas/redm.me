@@ -1,0 +1,121 @@
+# Kafka Cluster com Docker Compose
+
+**Dupla:**  
+- Jean Kronbauer de Moura 
+- Nicolas Perreira de Castro
+
+## Descrição 
+
+Este projeto configura um cluster Kafka utilizando Docker Compose. O cluster é composto por:  
+- Três brokers Kafka  
+- Um Zookeeper  
+- Kafka UI, para facilitar a interação com o Kafka (produção e consumo de mensagens).  
+
+## Pré-requisitos 
+
+Antes de começar, certifique-se de ter os seguintes softwares instalados:  
+- Docker  
+- Docker Compose  
+- Python
+
+## Passos para Instalação 
+
+1. Clone este repositório e navegue até o diretório do projeto:  
+   ```bash
+   git clone <URL_DO_REPOSITORIO>
+   cd <NOME_DO_REPOSITORIO>
+   ```
+
+2. Inicie os serviços definidos no arquivo `docker-compose.yml`:  
+   ```bash
+   docker-compose up -d
+   ```
+
+3. Verifique se todos os containers estão funcionando corretamente:  
+   ```bash
+   docker ps
+   ```
+
+   Containers esperados:
+   - `zookeeper`
+   - `kafka1`, `kafka2`, `kafka3`
+   - `kafka-ui`
+
+4. Acesse o Kafka UI no navegador:  
+   [http://localhost:8080](http://localhost:8080)
+
+---
+
+## Etapas Realizadas
+
+### 1. Criação do Ambiente
+O ambiente é composto por:  
+- **3 nodos Kafka:**  
+  Configurados com fator de replicação, mínimo de ISR e conectados ao Zookeeper.  
+- **Interface Kafka UI:**  
+  Para simplificar a criação de tópicos e mensagens, assim como o monitoramento.
+
+#### Configuração:  
+- Fator de replicação: `3`  
+- Número de partições por tópico: configurado diretamente na UI.
+
+### 2. Produtor e Consumidor Normal (Todos os Nodos Online)
+1. Acesse o Kafka UI [http://localhost:8080](http://localhost:8080).
+2. Crie um tópico na interface (ex.: `meu-topico`) com 3 partições e fator de replicação 3.
+3. Produza mensagens no tópico:  
+   - Vá para a aba **"Producer"**, escolha o tópico e insira mensagens.
+
+### 3. Produtor e Consumidor com Um Nodo Offline
+1. Pare um dos brokers Kafka (ex.: kafka3):  
+   ```bash
+   docker stop 'Nome do Container'  # Verifique o nome utilizando o docker ps
+
+---
+
+### 4. Produtor e Consumidor com Nodo Adicional
+
+1. **Adicionar um novo broker Kafka ao cluster**:  
+   Edite o arquivo `docker-compose.yml` para incluir a configuração do `kafka4` com as definições necessárias, não se esqeça de substituir o ip da sua maquina:
+
+   kafka4:
+     image: confluentinc/cp-kafka:latest
+     depends_on:
+       - zookeeper
+     ports:
+       - "9095:9095"
+     environment:
+       KAFKA_BROKER_ID: 4
+       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka4:9095
+       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9095
+       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 3
+       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 2
+
+2. **Atualizar o bootstrap do cluster**:  
+   Adicione o novo broker `kafka4:9095` à variável `KAFKA_CLUSTERS_0_BOOTSTRAP_SERVERS`:
+
+   KAFKA_CLUSTERS_0_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9093,kafka3:9094,kafka4:9095
+
+3. **Iniciar o novo serviço**:  
+   Execute o comando abaixo para subir o serviço com a nova configuração:
+
+   docker-compose up -d
+
+4. **Testar o funcionamento do cluster**:  
+   Utilize o novo broker para produzir e consumir mensagens, verificando se o cluster está funcionando corretamente.
+
+--- 
+
+## Novidades em Relação ao Exemplo de Aula
+
+-Uso do Kafka UI para facilitar a interação com o cluster.
+-Implementação de suporte à escalabilidade dinâmica, permitindo a adição de novos nós.
+-Configurações avançadas para replicação e ISR, garantindo maior tolerância a falhas.
+---
+
+**Notas:**  
+- Para visualizar logs, utilize o comando:  
+  ```bash
+  docker-compose logs -f 'Nome do Container' (Verifique o nome utilizando o docker ps)
+  ```
